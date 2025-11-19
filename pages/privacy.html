@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privacy Policy - How we handle your data">
+    <title>Privacy Policy - Readable Spokable PDF</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>📄 Readable Spokable PDF</h1>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="../index.html" role="menuitem" class="nav-link">Home</a></li>
+                <li role="none"><a href="settings.html" role="menuitem" class="nav-link">Settings</a></li>
+                <li role="none"><a href="diagnostics.html" role="menuitem" class="nav-link">Diagnostics</a></li>
+                <li role="none"><a href="about.html" role="menuitem" class="nav-link">About</a></li>
+                <li role="none"><a href="faq.html" role="menuitem" class="nav-link">FAQ</a></li>
+                <li role="none">
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h2>Privacy Policy</h2>
+            <p class="text-muted">Last Updated: November 19, 2025</p>
+
+            <section class="card">
+                <div class="card-body">
+                    <h3>Introduction</h3>
+                    <p>Readable Spokable PDF ("we", "our", or "the application") is committed to protecting your privacy. This Privacy Policy explains how we handle your information when you use our browser-based PDF transformation service.</p>
+
+                    <div class="callout callout-success">
+                        <div class="callout-icon">🔒</div>
+                        <div class="callout-content">
+                            <strong>Privacy First:</strong> This application is designed with privacy as a core principle. All processing happens locally in your browser, and we do not operate any servers that collect or store your data.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>1. Information We Do NOT Collect</h3>
+                    <p>Because this is a purely client-side application that runs entirely in your browser, we do NOT collect, store, or have access to:</p>
+
+                    <ul style="line-height: 2;">
+                        <li>Your PDF files or their contents</li>
+                        <li>Your personal information</li>
+                        <li>Your browsing history</li>
+                        <li>Your location data</li>
+                        <li>Usage analytics or statistics</li>
+                        <li>Cookies (except for essential LocalStorage data)</li>
+                        <li>IP addresses or device identifiers</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>2. Data Storage in Your Browser</h3>
+                    <p>The application stores data locally in YOUR browser using standard web technologies:</p>
+
+                    <h4>LocalStorage</h4>
+                    <ul>
+                        <li><strong>API Keys:</strong> Your Google AI Studio API keys (encrypted by your browser)</li>
+                        <li><strong>Settings:</strong> Your configuration preferences (batch size, prompts, PDF settings, etc.)</li>
+                        <li><strong>Theme Preference:</strong> Whether you prefer light or dark mode</li>
+                    </ul>
+
+                    <h4>IndexedDB</h4>
+                    <ul>
+                        <li><strong>PDF Files:</strong> Temporarily stored for processing</li>
+                        <li><strong>Batch Data:</strong> Intermediate transformation results</li>
+                        <li><strong>Processing Logs:</strong> Application logs for diagnostics</li>
+                        <li><strong>Session Data:</strong> Processing session state for recovery</li>
+                    </ul>
+
+                    <div class="callout callout-info">
+                        <div class="callout-icon">💾</div>
+                        <div class="callout-content">
+                            All of this data is stored ONLY on your device and is accessible only to this application in your browser. You can delete all stored data at any time using the "Erase All Data" button in Settings.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>3. Third-Party Services</h3>
+                    <p>To function, the application communicates with the following third-party services:</p>
+
+                    <h4>Google AI Studio / Gemini API</h4>
+                    <ul>
+                        <li><strong>Purpose:</strong> AI-powered text transformation</li>
+                        <li><strong>Data Sent:</strong> Text content from your PDF and images (if multimodal processing is enabled)</li>
+                        <li><strong>Authentication:</strong> Your API key is sent in request headers</li>
+                        <li><strong>Privacy Policy:</strong> <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="link-external">Google Privacy Policy</a></li>
+                    </ul>
+
+                    <h4>Content Delivery Networks (CDNs)</h4>
+                    <p>The application loads the following libraries from CDNs:</p>
+                    <ul>
+                        <li>PDF.js (Mozilla) - for PDF processing</li>
+                        <li>jsPDF - for PDF generation</li>
+                    </ul>
+                    <p>These are loaded once when you first visit the page and may be cached by your browser.</p>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>4. API Keys and Authentication</h3>
+                    <p>Your Google AI Studio API key is:</p>
+
+                    <ul style="line-height: 2;">
+                        <li>✅ <strong>Stored only in your browser's LocalStorage</strong></li>
+                        <li>✅ <strong>Never transmitted to any server operated by us</strong> (we don't have servers)</li>
+                        <li>✅ <strong>Only sent to Google's Gemini API</strong> when making transformation requests</li>
+                        <li>✅ <strong>Redacted in diagnostic exports</strong> (only first and last few characters shown)</li>
+                        <li>✅ <strong>Clearable at any time</strong> via Settings</li>
+                    </ul>
+
+                    <p>We recommend treating your API key as sensitive information and not sharing it with others.</p>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>5. Data Security</h3>
+                    <p>We take security seriously:</p>
+
+                    <ul style="line-height: 2;">
+                        <li><strong>Client-Side Processing:</strong> All operations happen in your browser</li>
+                        <li><strong>HTTPS Communication:</strong> All API calls to Google use secure HTTPS</li>
+                        <li><strong>No Server Storage:</strong> We don't have servers, so your data can't be breached from our end</li>
+                        <li><strong>Browser Security:</strong> Data is protected by your browser's security model</li>
+                        <li><strong>Optional Backup Keys:</strong> Failover support without exposing primary key</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>6. Your Rights and Control</h3>
+                    <p>You have complete control over your data:</p>
+
+                    <ul style="line-height: 2;">
+                        <li><strong>Access:</strong> All data is accessible via browser DevTools or the Diagnostics page</li>
+                        <li><strong>Export:</strong> Download your settings, logs, and data anytime</li>
+                        <li><strong>Delete:</strong> Clear individual items or erase all data with one click</li>
+                        <li><strong>Modify:</strong> Change settings without restriction</li>
+                        <li><strong>Portability:</strong> Export settings and import them elsewhere</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>7. Cookies and Tracking</h3>
+                    <p>This application does NOT use:</p>
+
+                    <ul style="line-height: 2;">
+                        <li>❌ Tracking cookies</li>
+                        <li>❌ Analytics services (Google Analytics, etc.)</li>
+                        <li>❌ Advertising networks</li>
+                        <li>❌ Social media tracking pixels</li>
+                        <li>❌ Third-party data collection scripts</li>
+                    </ul>
+
+                    <p>We use only essential browser storage (LocalStorage and IndexedDB) for application functionality.</p>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>8. Children's Privacy</h3>
+                    <p>This application is not specifically directed at children under 13. We do not knowingly collect any information from children. If you are a parent or guardian and believe your child has used this application, you can clear all data using your browser's settings or the "Erase All Data" option in the application.</p>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>9. Data Retention</h3>
+                    <p>Data is retained in your browser until you explicitly delete it:</p>
+
+                    <ul style="line-height: 2;">
+                        <li><strong>Settings:</strong> Persist until you reset them or clear browser data</li>
+                        <li><strong>Files & Batches:</strong> Remain in IndexedDB until you delete them</li>
+                        <li><strong>Logs:</strong> Can be manually cleared or set to auto-delete after a period</li>
+                    </ul>
+
+                    <p>Clearing your browser's cache and data will also remove all application data.</p>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>10. Changes to This Policy</h3>
+                    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Last Updated" date. We encourage you to review this policy periodically.</p>
+
+                    <p>Since the application is open source and can be self-hosted, this policy applies to the official hosted version. If you're running a modified or self-hosted version, different privacy practices may apply.</p>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>11. Contact Us</h3>
+                    <p>If you have questions about this Privacy Policy, you can:</p>
+
+                    <ul>
+                        <li>Open an issue on our <a href="https://github.com" target="_blank" rel="noopener" class="link-external">GitHub repository</a></li>
+                        <li>Review our <a href="faq.html">FAQ page</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body" style="text-align: center; background: var(--color-bg-secondary);">
+                    <h3>Your Privacy Matters</h3>
+                    <p>We built this application with privacy as a core principle. Your data stays on your device, under your control.</p>
+
+                    <div class="action-buttons">
+                        <a href="settings.html" class="btn btn-primary">
+                            Manage Settings
+                        </a>
+                        <a href="diagnostics.html" class="btn btn-secondary">
+                            View Data
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Readable Spokable PDF</h4>
+                    <p>Transform technical documents into natural speech</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" class="link-external">Get API Key</a></li>
+                        <li><a href="https://ai.google.dev/pricing" target="_blank" rel="noopener" class="link-external">Pricing Info</a></li>
+                        <li><a href="https://github.com" target="_blank" rel="noopener" class="link-external">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Readable Spokable PDF. MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Page Script -->
+    <script type="module">
+        import { getThemeManager } from '../js/settings-manager.js';
+
+        const theme = getThemeManager();
+        theme.init();
+
+        // Theme toggle
+        document.querySelector('.theme-toggle').addEventListener('click', () => {
+            theme.toggle();
+            const icon = document.querySelector('.theme-icon');
+            icon.textContent = theme.isDark() ? '☀️' : '🌙';
+        });
+
+        // Mobile nav
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

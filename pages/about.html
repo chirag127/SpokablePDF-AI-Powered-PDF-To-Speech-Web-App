@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Readable Spokable PDF - Transform technical documents into natural speech">
+    <title>About - Readable Spokable PDF</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>📄 Readable Spokable PDF</h1>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="../index.html" role="menuitem" class="nav-link">Home</a></li>
+                <li role="none"><a href="settings.html" role="menuitem" class="nav-link">Settings</a></li>
+                <li role="none"><a href="diagnostics.html" role="menuitem" class="nav-link">Diagnostics</a></li>
+                <li role="none"><a href="about.html" role="menuitem" class="nav-link active">About</a></li>
+                <li role="none"><a href="faq.html" role="menuitem" class="nav-link">FAQ</a></li>
+                <li role="none">
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h2>About Readable Spokable PDF</h2>
+
+            <section class="card">
+                <div class="card-body">
+                    <h3>Our Mission</h3>
+                    <p>Readable Spokable PDF is a browser-based application designed to make technical documentation more accessible by transforming it into natural, spoken-friendly content optimized for text-to-speech (TTS) systems.</p>
+
+                    <p>We believe that everyone should be able to consume technical content in a way that works best for them. Whether you're driving, exercising, or simply prefer listening over reading, our tool makes technical PDFs easy to listen to.</p>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>What We Do</h3>
+                    <p>Our application takes technical PDF documents and uses advanced AI to:</p>
+
+                    <ul style="line-height: 2;">
+                        <li>📝 <strong>Convert code blocks</strong> into descriptive explanations instead of reading code line-by-line</li>
+                        <li>📊 <strong>Transform tables</strong> into narrative sentences that flow naturally</li>
+                        <li>🖼️ <strong>Describe figures and images</strong> using multimodal AI analysis</li>
+                        <li>🔢 <strong>Convert mathematical notation</strong> into spoken form (e.g., "x squared" instead of "x²")</li>
+                        <li>📋 <strong>Restructure lists</strong> with clear transitions like "first," "next," "finally"</li>
+                        <li>🗣️ <strong>Add natural pauses</strong> and rhythm for better TTS rendering</li>
+                        <li>✏️ <strong>Expand acronyms</strong> on first use for clarity</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>How It Works</h3>
+                    <ol style="line-height: 2;">
+                        <li><strong>Upload</strong> - Select a PDF file with selectable text (no OCR required)</li>
+                        <li><strong>Extract</strong> - We extract text and images from your PDF using PDF.js</li>
+                        <li><strong>Transform</strong> - Google's Gemini AI converts technical content to natural speech</li>
+                        <li><strong>Generate</strong> - A new PDF is created with the transformed content</li>
+                        <li><strong>Listen</strong> - Use the output with any TTS app like Moon+ Reader Pro</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>Key Features</h3>
+
+                    <div class="info-grid">
+                        <div class="card" style="background: var(--color-bg-secondary);">
+                            <div class="card-body">
+                                <h4>🔒 100% Private</h4>
+                                <p>All processing happens in your browser. Your files never leave your device except to communicate with Google's AI API.</p>
+                            </div>
+                        </div>
+
+                        <div class="card" style="background: var(--color-bg-secondary);">
+                            <div class="card-body">
+                                <h4>🚀 No Server Required</h4>
+                                <p>This is a pure client-side application. You can even run it offline after the initial load.</p>
+                            </div>
+                        </div>
+
+                        <div class="card" style="background: var(--color-bg-secondary);">
+                            <div class="card-body">
+                                <h4>⚙️ Fully Customizable</h4>
+                                <p>Edit transformation prompts, adjust AI parameters, and configure PDF output to your preferences.</p>
+                            </div>
+                        </div>
+
+                        <div class="card" style="background: var(--color-bg-secondary);">
+                            <div class="card-body">
+                                <h4>🔄 Retry & Failover</h4>
+                                <p>Robust error handling with automatic retries, exponential backoff, and backup API key support.</p>
+                            </div>
+                        </div>
+
+                        <div class="card" style="background: var(--color-bg-secondary);">
+                            <div class="card-body">
+                                <h4>📊 Progress Tracking</h4>
+                                <p>Real-time progress updates with ETA estimates, batch status, and the ability to pause/resume.</p>
+                            </div>
+                        </div>
+
+                        <div class="card" style="background: var(--color-bg-secondary);">
+                            <div class="card-body">
+                                <h4>🌙 Dark Mode</h4>
+                                <p>Beautiful, persistent dark mode that's easy on the eyes during late-night work sessions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>Technology Stack</h3>
+                    <p>We use modern, proven technologies:</p>
+
+                    <ul style="line-height: 2;">
+                        <li><strong>PDF.js</strong> - Mozilla's excellent PDF rendering library for text extraction</li>
+                        <li><strong>Google Gemini AI</strong> - State-of-the-art language models for content transformation</li>
+                        <li><strong>jsPDF</strong> - PDF generation library for creating output documents</li>
+                        <li><strong>IndexedDB</strong> - Browser database for storing intermediate data</li>
+                        <li><strong>LocalStorage</strong> - For persisting user settings and preferences</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>Open Source</h3>
+                    <p>Readable Spokable PDF is open source software released under the MIT License. You can:</p>
+
+                    <ul style="line-height: 2;">
+                        <li>View and modify the source code</li>
+                        <li>Host your own instance</li>
+                        <li>Contribute improvements</li>
+                        <li>Report issues and request features</li>
+                    </ul>
+
+                    <p>
+                        <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-primary">
+                            View on GitHub
+                        </a>
+                    </p>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>Contact & Support</h3>
+                    <p>Need help or have questions?</p>
+
+                    <ul style="line-height: 2;">
+                        <li>📖 Check our <a href="faq.html">FAQ page</a> for common questions</li>
+                        <li>🔧 Use the <a href="diagnostics.html">Diagnostics page</a> to export logs</li>
+                        <li>🐛 Report issues on <a href="https://github.com" target="_blank" rel="noopener" class="link-external">GitHub</a></li>
+                        <li>💬 Join our community discussions</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <h3>Credits & Acknowledgments</h3>
+                    <p>This project wouldn't be possible without:</p>
+
+                    <ul style="line-height: 2;">
+                        <li><strong>PDF.js</strong> by Mozilla - Enabling browser-based PDF processing</li>
+                        <li><strong>Google Gemini</strong> - Powering our AI transformations</li>
+                        <li><strong>jsPDF</strong> - Making PDF generation accessible</li>
+                        <li><strong>The open source community</strong> - For inspiration and support</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="card mt-xl">
+                <div class="card-body" style="text-align: center;">
+                    <h3>Version Information</h3>
+                    <p><strong>Version:</strong> 1.0.0</p>
+                    <p><strong>Released:</strong> November 2025</p>
+                    <p><strong>License:</strong> MIT</p>
+
+                    <div class="mt-lg">
+                        <a href="../index.html" class="btn btn-primary btn-lg">
+                            Get Started →
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Readable Spokable PDF</h4>
+                    <p>Transform technical documents into natural speech</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" class="link-external">Get API Key</a></li>
+                        <li><a href="https://ai.google.dev/pricing" target="_blank" rel="noopener" class="link-external">Pricing Info</a></li>
+                        <li><a href="https://github.com" target="_blank" rel="noopener" class="link-external">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Readable Spokable PDF. MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Page Script -->
+    <script type="module">
+        import { getThemeManager } from '../js/settings-manager.js';
+
+        const theme = getThemeManager();
+        theme.init();
+
+        // Theme toggle
+        document.querySelector('.theme-toggle').addEventListener('click', () => {
+            theme.toggle();
+            const icon = document.querySelector('.theme-icon');
+            icon.textContent = theme.isDark() ? '☀️' : '🌙';
+        });
+
+        // Mobile nav
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

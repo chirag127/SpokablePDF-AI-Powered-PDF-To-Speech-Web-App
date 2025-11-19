@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert technical PDFs to readable, spokable content optimized for text-to-speech">
+    <meta name="keywords" content="PDF, TTS, text-to-speech, AI, Gemini, accessible, readable">
+    <title>Convert to Readable Spokable PDF</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        // Configure PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>📄 Readable Spokable PDF</h1>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem" class="nav-link active">Home</a></li>
+                <li role="none"><a href="pages/settings.html" role="menuitem" class="nav-link">Settings</a></li>
+                <li role="none"><a href="pages/diagnostics.html" role="menuitem" class="nav-link">Diagnostics</a></li>
+                <li role="none"><a href="pages/about.html" role="menuitem" class="nav-link">About</a></li>
+                <li role="none"><a href="pages/faq.html" role="menuitem" class="nav-link">FAQ</a></li>
+                <li role="none">
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Welcome Section -->
+        <section class="welcome-section" id="welcomeSection">
+            <div class="container">
+                <h2>Transform Technical PDFs into Natural, Spoken Content</h2>
+                <p class="subtitle">Upload a PDF and convert it to TTS-friendly format using AI</p>
+
+                <!-- First-time user callout -->
+                <div class="callout callout-info" id="firstTimeCallout">
+                    <div class="callout-icon">ℹ️</div>
+                    <div class="callout-content">
+                        <strong>First time here?</strong> You'll need a Google AI Studio API key to use this app.
+                        <a href="#" class="link-external" id="showWalkthroughBtn">Start the walkthrough</a> to learn how.
+                    </div>
+                    <button class="callout-close" aria-label="Dismiss" data-dismiss="firstTimeCallout">×</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- File Upload Section -->
+        <section class="upload-section">
+            <div class="container">
+                <div class="upload-area" id="uploadArea" role="button" tabindex="0"
+                     aria-label="Click or drag and drop to upload PDF">
+                    <div class="upload-icon">📁</div>
+                    <h3>Drag and drop your PDF here</h3>
+                    <p>or</p>
+                    <label for="fileInput" class="btn btn-primary">
+                        Choose File
+                        <input type="file" id="fileInput" accept=".pdf" hidden>
+                    </label>
+                    <p class="upload-hint">Only PDF files with selectable text (no OCR required)</p>
+                </div>
+
+                <!-- File Info Display -->
+                <div class="file-info" id="fileInfo" style="display: none;">
+                    <h3>📄 File Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Filename:</label>
+                            <span id="fileName">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Pages:</label>
+                            <span id="filePages">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Size:</label>
+                            <span id="fileSize">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Detected Language:</label>
+                            <span id="detectedLang">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Text Length:</label>
+                            <span id="textLength">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Words:</label>
+                            <span id="wordCount">-</span>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-success btn-lg" id="processBtn">
+                            <span class="btn-icon">🚀</span>
+                            Process PDF
+                        </button>
+                        <button class="btn btn-secondary" id="clearBtn">
+                            <span class="btn-icon">🗑️</span>
+                            Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Section -->
+        <section class="progress-section" id="progressSection" style="display: none;">
+            <div class="container">
+                <h3>Processing Progress</h3>
+
+                <!-- Stage Indicator -->
+                <div class="stage-indicator" id="stageIndicator">
+                    <span class="stage-icon">⏳</span>
+                    <span class="stage-text" id="stageText">Initializing...</span>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar" role="progressbar"
+                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="progress-percentage" id="progressPercentage">0%</span>
+                </div>
+
+                <!-- ETA and Stats -->
+                <div class="progress-stats">
+                    <div class="stat-item">
+                        <label>Batch:</label>
+                        <span id="currentBatch">0</span> / <span id="totalBatches">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <label>ETA:</label>
+                        <span id="eta">Calculating...</span>
+                    </div>
+                    <div class="stat-item">
+                        <label>Speed:</label>
+                        <span id="speed">-</span>
+                    </div>
+                </div>
+
+                <!-- Batch Status List -->
+                <div class="batch-status-container">
+                    <h4>Batch Status</h4>
+                    <div class="batch-list" id="batchList"></div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="progress-actions">
+                    <button class="btn btn-warning" id="pauseBtn">
+                        <span class="btn-icon">⏸️</span>
+                        Pause
+                    </button>
+                    <button class="btn btn-danger" id="cancelBtn">
+                        <span class="btn-icon">⏹️</span>
+                        Cancel
+                    </button>
+                    <button class="btn btn-info" id="downloadPartialBtn" disabled>
+                        <span class="btn-icon">💾</span>
+                        Download Partial
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <div class="container">
+                <h3>✅ Processing Complete!</h3>
+
+                <div class="results-summary">
+                    <div class="summary-item">
+                        <label>Processed Batches:</label>
+                        <span id="resultBatches">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <label>Success Rate:</label>
+                        <span id="resultSuccessRate">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <label>Total Time:</label>
+                        <span id="resultTime">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <label>Output Size:</label>
+                        <span id="resultSize">-</span>
+                    </div>
+                </div>
+
+                <!-- Preview Section -->
+                <div class="preview-section">
+                    <h4>Preview Transformed Content</h4>
+                    <div class="preview-container" id="previewContainer">
+                        <p class="text-muted">Loading preview...</p>
+                    </div>
+                </div>
+
+                <!-- Download Buttons -->
+                <div class="result-actions">
+                    <button class="btn btn-success btn-lg" id="downloadFinalBtn">
+                        <span class="btn-icon">⬇️</span>
+                        Download Final PDF
+                    </button>
+                    <button class="btn btn-secondary" id="downloadTextBtn">
+                        <span class="btn-icon">📝</span>
+                        Download as Text
+                    </button>
+                    <button class="btn btn-info" id="previewAudioBtn">
+                        <span class="btn-icon">🔊</span>
+                        Preview with TTS
+                    </button>
+                    <button class="btn btn-outline" id="startNewBtn">
+                        <span class="btn-icon">🔄</span>
+                        Process Another PDF
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Readable Spokable PDF</h4>
+                    <p>Transform technical documents into natural speech. 100% browser-based, private, and secure.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="pages/about.html">About</a></li>
+                        <li><a href="pages/faq.html">FAQ</a></li>
+                        <li><a href="pages/privacy.html">Privacy Policy</a></li>
+                        <li><a href="pages/terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" class="link-external">Get API Key</a></li>
+                        <li><a href="https://ai.google.dev/pricing" target="_blank" rel="noopener" class="link-external">Pricing Info</a></li>
+                        <li><a href="https://github.com" target="_blank" rel="noopener" class="link-external">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Readable Spokable PDF. MIT License. No tracking, no analytics.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Walkthrough Modal -->
+    <div class="modal" id="walkthroughModal" role="dialog" aria-labelledby="walkthroughTitle" aria-hidden="true">
+        <div class="modal-overlay" data-dismiss-modal="walkthroughModal"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="walkthroughTitle">Welcome! Let's Get Started</h2>
+                <button class="modal-close" data-dismiss-modal="walkthroughModal" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="walkthrough-step" data-step="1">
+                    <h3>Step 1: Get Your API Key</h3>
+                    <p>This app uses Google's Gemini AI to transform your PDFs. You'll need a free API key:</p>
+                    <ol>
+                        <li>Visit <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" class="link-external">Google AI Studio</a></li>
+                        <li>Sign in with your Google account</li>
+                        <li>Click "Get API Key" or "Create API Key"</li>
+                        <li>Copy the generated key</li>
+                    </ol>
+                    <div class="callout callout-info">
+                        <div class="callout-icon">🔒</div>
+                        <div class="callout-content">
+                            Your API key stays in your browser and is only sent to Google's AI endpoints.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="walkthrough-step" data-step="2" style="display: none;">
+                    <h3>Step 2: Add Your API Key</h3>
+                    <p>Paste your API key in the Settings page:</p>
+                    <div class="walkthrough-input-demo">
+                        <label>Primary API Key:</label>
+                        <input type="text" placeholder="AIza..." disabled>
+                    </div>
+                    <p>Optionally, add a backup key for redundancy.</p>
+                    <button class="btn btn-primary" id="goToSettingsBtn">Go to Settings</button>
+                </div>
+
+                <div class="walkthrough-step" data-step="3" style="display: none;">
+                    <h3>Step 3: Upload and Process</h3>
+                    <p>Once your API key is set:</p>
+                    <ol>
+                        <li>Upload a PDF with selectable text</li>
+                        <li>Review the file information</li>
+                        <li>Click "Process PDF"</li>
+                        <li>Wait for transformation (you'll see progress)</li>
+                        <li>Download your TTS-optimized PDF!</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="walkPrevBtn" style="display: none;">Previous</button>
+                <button class="btn btn-primary" id="walkNextBtn">Next</button>
+                <button class="btn btn-success" id="walkDoneBtn" style="display: none;">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

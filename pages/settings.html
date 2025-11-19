@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Settings - Configure your Readable Spokable PDF converter">
+    <title>Settings - Readable Spokable PDF</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>📄 Readable Spokable PDF</h1>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="../index.html" role="menuitem" class="nav-link">Home</a></li>
+                <li role="none"><a href="settings.html" role="menuitem" class="nav-link active">Settings</a></li>
+                <li role="none"><a href="diagnostics.html" role="menuitem" class="nav-link">Diagnostics</a></li>
+                <li role="none"><a href="about.html" role="menuitem" class="nav-link">About</a></li>
+                <li role="none"><a href="faq.html" role="menuitem" class="nav-link">FAQ</a></li>
+                <li role="none">
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h2>Settings</h2>
+            <p class="subtitle">Configure your Readable Spokable PDF converter. All settings are auto-saved and stored locally in your browser.</p>
+
+            <!-- API Configuration -->
+            <section class="card">
+                <div class="card-header">
+                    <h3 class="card-title">API Configuration</h3>
+                </div>
+                <div class="card-body">
+                    <div class="callout callout-info">
+                        <div class="callout-icon">ℹ️</div>
+                        <div class="callout-content">
+                            <strong>Get your API key:</strong> Visit
+                            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" class="link-external">Google AI Studio</a>
+                            to create a free API key. Your key is stored only in your browser.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apiKey" class="form-label form-label-required">Primary API Key</label>
+                        <input type="password" id="apiKey" class="form-input" placeholder="AIza...">
+                        <small class="form-help">Your Google AI Studio API key</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="backupApiKey" class="form-label">Backup API Key (Optional)</label>
+                        <input type="password" id="backupApiKey" class="form-input" placeholder="AIza...">
+                        <small class="form-help">Failover key for rate limits</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apiTimeout" class="form-label">API Timeout (seconds)</label>
+                        <input type="number" id="apiTimeout" class="form-input" value="60" min="10" max="300">
+                        <small class="form-help">Maximum time to wait for API response</small>
+                    </div>
+
+                    <button class="btn btn-secondary" id="testApiBtn">Test API Connection</button>
+                    <button class="btn btn-danger" id="clearKeysBtn">Clear API Keys</button>
+                </div>
+            </section>
+
+            <!-- Model Configuration -->
+            <section class="card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">Model Configuration</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="form-label">Model Priority (drag to reorder)</label>
+                        <div id="modelList" class="model-list">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                        <small class="form-help">Models will be tried in order. Drag to change priority.</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Batch Processing -->
+            <section class="card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">Batch Processing</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="batchSize" class="form-label">Batch Size (tokens)</label>
+                        <input type="number" id="batchSize" class="form-input" value="10000" min="1000" max="50000" step="1000">
+                        <small class="form-help">Number of tokens per batch (roughly 4 characters = 1 token)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="overlapSize" class="form-label">Overlap Size (tokens)</label>
+                        <input type="number" id="overlapSize" class="form-input" value="200" min="0" max="1000" step="50">
+                        <small class="form-help">Overlap between batches for context continuity</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maxRetries" class="form-label">Max Retries</label>
+                        <input type="number" id="maxRetries" class="form-input" value="3" min="1" max="10">
+                        <small class="form-help">Number of retry attempts per batch</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="retryDelay" class="form-label">Retry Delay (ms)</label>
+                        <input type="number" id="retryDelay" class="form-input" value="2000" min="500" max="10000" step="500">
+                        <small class="form-help">Base delay before retry (uses exponential backoff)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rateLimitDelay" class="form-label">Rate Limit Delay (ms)</label>
+                        <input type="number" id="rateLimitDelay" class="form-input" value="1000" min="0" max="5000" step="100">
+                        <small class="form-help">Delay between API requests</small>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" id="turboMode" class="form-check-input">
+                        <label for="turboMode" class="form-check-label">
+                            Enable Turbo Mode (Process multiple batches in parallel)
+                        </label>
+                    </div>
+
+                    <div class="form-group" id="parallelChunksGroup">
+                        <label for="parallelChunks" class="form-label">Parallel Batches</label>
+                        <input type="number" id="parallelChunks" class="form-input" value="3" min="1" max="10">
+                        <small class="form-help">Number of batches to process simultaneously (Turbo Mode only)</small>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" id="autoRetry" class="form-check-input" checked>
+                        <label for="autoRetry" class="form-check-label">
+                            Automatically retry failed requests
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Generation Parameters -->
+            <section class="card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">AI Generation Parameters</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="temperature" class="form-label">Temperature</label>
+                        <input type="range" id="temperature" min="0" max="2" step="0.1" value="1.0">
+                        <output id="temperatureValue">1.0</output>
+                        <small class="form-help">Creativity level (0 = focused, 2 = creative)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topP" class="form-label">Top P</label>
+                        <input type="range" id="topP" min="0" max="1" step="0.05" value="0.95">
+                        <output id="topPValue">0.95</output>
+                        <small class="form-help">Nucleus sampling threshold</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topK" class="form-label">Top K</label>
+                        <input type="number" id="topK" class="form-input" value="40" min="1" max="100">
+                        <small class="form-help">Top K sampling parameter</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maxOutputTokens" class="form-label">Max Output Tokens</label>
+                        <input type="number" id="maxOutputTokens" class="form-input" value="4000" min="100" max="8000" step="100">
+                        <small class="form-help">Maximum number of tokens in response</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transformation Prompts -->
+            <section class="card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">Transformation Prompts</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="systemPrompt" class="form-label">System Prompt</label>
+                        <textarea id="systemPrompt" class="form-textarea" rows="3"></textarea>
+                        <small class="form-help">Overall instructions for AI behavior</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="textTransformationPrompt" class="form-label">Text Transformation Prompt</label>
+                        <textarea id="textTransformationPrompt" class="form-textarea" rows="5"></textarea>
+                        <small class="form-help">Main transformation instructions</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tableConversionPrompt" class="form-label">Table Conversion Prompt</label>
+                        <textarea id="tableConversionPrompt" class="form-textarea" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="codeDescriptionPrompt" class="form-label">Code Description Prompt</label>
+                        <textarea id="codeDescriptionPrompt" class="form-textarea" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mathNotationPrompt" class="form-label">Math Notation Prompt</label>
+                        <textarea id="mathNotationPrompt" class="form-textarea" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="figureDescriptionPrompt" class="form-label">Figure Description Prompt</label>
+                        <textarea id="figureDescriptionPrompt" class="form-textarea" rows="3"></textarea>
+                    </div>
+
+                    <button class="btn btn-secondary" id="resetPromptsBtn">Reset to Defaults</button>
+                </div>
+            </section>
+
+            <!-- Transformation Rules -->
+            <section class="card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">Transformation Rules</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input type="checkbox" id="expandAcronyms" class="form-check-input" checked>
+                        <label for="expandAcronyms" class="form-check-label">Expand acronyms on first use</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" id="simplifyJargon" class="form-check-input" checked>
+                        <label for="simplifyJargon" class="form-check-label">Simplify technical jargon</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" id="insertPauseMarkers" class="form-check-input" checked>
+                        <label for="insertPauseMarkers" class="form-check-label">Insert pause markers for TTS</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" id="includeImages" class="form-check-input" checked>
+                        <label for="includeImages" class="form-check-label">Process images with multimodal AI</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PDF Output Configuration -->
+            <section class="card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">PDF Output Configuration</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="fontSize" class="form-label">Font Size (pt)</label>
+                        <input type="number" id="fontSize" class="form-input" value="12" min="8" max="24">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lineHeight" class="form-label">Line Height</label>
+                        <input type="number" id="lineHeight" class="form-input" value="1.5" min="1" max="3" step="0.1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pageMargin" class="form-label">Page Margin (mm)</label>
+                        <input type="number" id="pageMargin" class="form-input" value="20" min="10" max="50">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fontFamily" class="form-label">Font Family</label>
+                        <select id="fontFamily" class="form-select">
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Arial">Arial</option>
+                            <option value="Helvetica">Helvetica</option>
+                            <option value="Courier">Courier</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pageSize" class="form-label">Page Size</label>
+                        <select id="pageSize" class="form-select">
+                            <option value="Letter">Letter</option>
+                            <option value="A4">A4</option>
+                            <option value="Legal">Legal</option>
+                        </select>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" id="addPageNumbers" class="form-check-input" checked>
+                        <label for="addPageNumbers" class="form-check-label">Add page numbers</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" id="generateTOC" class="form-check-input" checked>
+                        <label for="generateTOC" class="form-check-label">Generate table of contents</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Actions -->
+            <section class="card mt-xl">
+                <div class="card-body">
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" id="exportSettingsBtn">Export Settings</button>
+                        <button class="btn btn-secondary" id="importSettingsBtn">Import Settings</button>
+                        <button class="btn btn-warning" id="resetAllBtn">Reset All to Defaults</button>
+                        <button class="btn btn-danger" id="eraseDataBtn">Erase All Data</button>
+                    </div>
+                    <input type="file" id="importFileInput" accept=".json" hidden>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Readable Spokable PDF</h4>
+                    <p>Transform technical documents into natural speech</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Readable Spokable PDF. MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Settings Script -->
+    <script type="module">
+        import { getSettingsManager, getThemeManager } from '../js/settings-manager.js';
+        import { showToast } from '../js/utils.js';
+        import { createGeminiClient } from '../js/gemini-client.js';
+
+        const settings = getSettingsManager();
+        const theme = getThemeManager();
+
+        // Initialize theme
+        theme.init();
+
+        // Load settings into form
+        function loadSettings() {
+            const current = settings.get();
+
+            // API Configuration
+            document.getElementById('apiKey').value = current.apiKey || '';
+            document.getElementById('backupApiKey').value = current.backupApiKey || '';
+            document.getElementById('apiTimeout').value = current.apiTimeout / 1000;
+
+            // Batch Processing
+            document.getElementById('batchSize').value = current.batchSize;
+            document.getElementById('overlapSize').value = current.overlapSize;
+            document.getElementById('maxRetries').value = current.maxRetries;
+            document.getElementById('retryDelay').value = current.retryDelay;
+            document.getElementById('rateLimitDelay').value = current.rateLimitDelay;
+            document.getElementById('turboMode').checked = current.turboMode;
+            document.getElementById('parallelChunks').value = current.parallelChunks;
+            document.getElementById('autoRetry').checked = current.autoRetry;
+
+            // AI Parameters
+            document.getElementById('temperature').value = current.temperature;
+            document.getElementById('temperatureValue').textContent = current.temperature;
+            document.getElementById('topP').value = current.topP;
+            document.getElementById('topPValue').textContent = current.topP;
+            document.getElementById('topK').value = current.topK;
+            document.getElementById('maxOutputTokens').value = current.maxOutputTokens;
+
+            // Prompts
+            document.getElementById('systemPrompt').value = current.prompts.system;
+            document.getElementById('textTransformationPrompt').value = current.prompts.textTransformation;
+            document.getElementById('tableConversionPrompt').value = current.prompts.tableConversion;
+            document.getElementById('codeDescriptionPrompt').value = current.prompts.codeDescription;
+            document.getElementById('mathNotationPrompt').value = current.prompts.mathNotation;
+            document.getElementById('figureDescriptionPrompt').value = current.prompts.figureDescription;
+
+            // Rules
+            document.getElementById('expandAcronyms').checked = current.rules.expandAcronyms;
+            document.getElementById('simplifyJargon').checked = current.rules.simplifyJargon;
+            document.getElementById('insertPauseMarkers').checked = current.rules.insertPauseMarkers;
+            document.getElementById('includeImages').checked = current.rules.includeImages;
+
+            // PDF Config
+            document.getElementById('fontSize').value = current.pdfConfig.fontSize;
+            document.getElementById('lineHeight').value = current.pdfConfig.lineHeight;
+            document.getElementById('pageMargin').value = current.pdfConfig.pageMargin;
+            document.getElementById('fontFamily').value = current.pdfConfig.fontFamily;
+            document.getElementById('pageSize').value = current.pdfConfig.pageSize;
+            document.getElementById('addPageNumbers').checked = current.pdfConfig.addPageNumbers;
+            document.getElementById('generateTOC').checked = current.pdfConfig.generateTOC;
+
+            // Load model list
+            loadModelList(current.models);
+        }
+
+        function loadModelList(models) {
+            const list = document.getElementById('modelList');
+            list.innerHTML = models.map(model => `
+                <div class="model-item" data-model="${model}">
+                    <span class="model-drag-handle">☰</span>
+                    <span class="model-name">${model}</span>
+                </div>
+            `).join('');
+        }
+
+        // Auto-save on change
+        function setupAutoSave() {
+            const form = document.querySelector('main');
+            form.addEventListener('change', (e) => {
+                saveSettings();
+            });
+
+            // Handle range inputs
+            document.getElementById('temperature').addEventListener('input', (e) => {
+                document.getElementById('temperatureValue').textContent = e.target.value;
+            });
+
+            document.getElementById('topP').addEventListener('input', (e) => {
+                document.getElementById('topPValue').textContent = e.target.value;
+            });
+        }
+
+        function saveSettings() {
+            const updates = {
+                apiKey: document.getElementById('apiKey').value,
+                backupApiKey: document.getElementById('backupApiKey').value,
+                apiTimeout: parseInt(document.getElementById('apiTimeout').value) * 1000,
+                batchSize: parseInt(document.getElementById('batchSize').value),
+                overlapSize: parseInt(document.getElementById('overlapSize').value),
+                maxRetries: parseInt(document.getElementById('maxRetries').value),
+                retryDelay: parseInt(document.getElementById('retryDelay').value),
+                rateLimitDelay: parseInt(document.getElementById('rateLimitDelay').value),
+                turboMode: document.getElementById('turboMode').checked,
+                parallelChunks: parseInt(document.getElementById('parallelChunks').value),
+                autoRetry: document.getElementById('autoRetry').checked,
+                temperature: parseFloat(document.getElementById('temperature').value),
+                topP: parseFloat(document.getElementById('topP').value),
+                topK: parseInt(document.getElementById('topK').value),
+                maxOutputTokens: parseInt(document.getElementById('maxOutputTokens').value),
+                prompts: {
+                    system: document.getElementById('systemPrompt').value,
+                    textTransformation: document.getElementById('textTransformationPrompt').value,
+                    tableConversion: document.getElementById('tableConversionPrompt').value,
+                    codeDescription: document.getElementById('codeDescriptionPrompt').value,
+                    mathNotation: document.getElementById('mathNotationPrompt').value,
+                    figureDescription: document.getElementById('figureDescriptionPrompt').value
+                },
+                rules: {
+                    expandAcronyms: document.getElementById('expandAcronyms').checked,
+                    simplifyJargon: document.getElementById('simplifyJargon').checked,
+                    insertPauseMarkers: document.getElementById('insertPauseMarkers').checked,
+                    includeImages: document.getElementById('includeImages').checked
+                },
+                pdfConfig: {
+                    fontSize: parseInt(document.getElementById('fontSize').value),
+                    lineHeight: parseFloat(document.getElementById('lineHeight').value),
+                    pageMargin: parseInt(document.getElementById('pageMargin').value),
+                    fontFamily: document.getElementById('fontFamily').value,
+                    pageSize: document.getElementById('pageSize').value,
+                    addPageNumbers: document.getElementById('addPageNumbers').checked,
+                    generateTOC: document.getElementById('generateTOC').checked
+                }
+            };
+
+            settings.update(updates);
+        }
+
+        // Button handlers
+        document.getElementById('testApiBtn').addEventListener('click', async () => {
+            const apiKey = document.getElementById('apiKey').value;
+            if (!apiKey) {
+                showToast('Please enter an API key first', 'warning');
+                return;
+            }
+
+            showToast('Testing API connection...', 'info');
+            const client = createGeminiClient({ apiKey });
+
+            try {
+                const valid = await client.testApiKey(apiKey);
+                if (valid) {
+                    showToast('API key is valid! ✓', 'success');
+                } else {
+                    showToast('API key is invalid', 'danger');
+                }
+            } catch (error) {
+                showToast(`Test failed: ${error.message}`, 'danger');
+            }
+        });
+
+        document.getElementById('clearKeysBtn').addEventListener('click', () => {
+            if (confirm('Are you sure you want to clear all API keys?')) {
+                settings.clearApiKeys();
+                document.getElementById('apiKey').value = '';
+                document.getElementById('backupApiKey').value = '';
+                showToast('API keys cleared', 'success');
+            }
+        });
+
+        document.getElementById('resetPromptsBtn').addEventListener('click', () => {
+            if (confirm('Reset all prompts to defaults?')) {
+                settings.resetSection('prompts');
+                loadSettings();
+                showToast('Prompts reset to defaults', 'success');
+            }
+        });
+
+        document.getElementById('exportSettingsBtn').addEventListener('click', () => {
+            const json = settings.export();
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'readable-spokable-settings.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('Settings exported', 'success');
+        });
+
+        document.getElementById('importSettingsBtn').addEventListener('click', () => {
+            document.getElementById('importFileInput').click();
+        });
+
+        document.getElementById('importFileInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const imported = settings.import(e.target.result);
+                        if (imported) {
+                            loadSettings();
+                            showToast('Settings imported successfully', 'success');
+                        } else {
+                            showToast('Failed to import settings', 'danger');
+                        }
+                    } catch (error) {
+                        showToast('Invalid settings file', 'danger');
+                    }
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        document.getElementById('resetAllBtn').addEventListener('click', () => {
+            if (confirm('Reset ALL settings to defaults? This cannot be undone.')) {
+                settings.reset();
+                loadSettings();
+                showToast('All settings reset to defaults', 'success');
+            }
+        });
+
+        document.getElementById('eraseDataBtn').addEventListener('click', async () => {
+            if (confirm('Erase ALL data including settings, files, and logs? This cannot be undone!')) {
+                if (confirm('Are you ABSOLUTELY sure? This will clear everything.')) {
+                    settings.reset();
+                    const { getStorageManager } = await import('../js/storage-manager.js');
+                    const storage = getStorageManager();
+                    await storage.init();
+                    await storage.clearAll();
+                    showToast('All data erased', 'success');
+                    setTimeout(() => location.reload(), 2000);
+                }
+            }
+        });
+
+        // Theme toggle
+        document.querySelector('.theme-toggle').addEventListener('click', () => {
+            theme.toggle();
+            const icon = document.querySelector('.theme-icon');
+            icon.textContent = theme.isDark() ? '☀️' : '🌙';
+        });
+
+        // Mobile nav
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Initialize
+        loadSettings();
+        setupAutoSave();
+    </script>
+</body>
+</html>

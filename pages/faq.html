@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FAQ - Frequently Asked Questions about Readable Spokable PDF">
+    <title>FAQ - Readable Spokable PDF</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>📄 Readable Spokable PDF</h1>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="../index.html" role="menuitem" class="nav-link">Home</a></li>
+                <li role="none"><a href="settings.html" role="menuitem" class="nav-link">Settings</a></li>
+                <li role="none"><a href="diagnostics.html" role="menuitem" class="nav-link">Diagnostics</a></li>
+                <li role="none"><a href="about.html" role="menuitem" class="nav-link">About</a></li>
+                <li role="none"><a href="faq.html" role="menuitem" class="nav-link active">FAQ</a></li>
+                <li role="none">
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <p class="subtitle">Find answers to common questions about Readable Spokable PDF</p>
+
+            <!-- FAQ Accordion -->
+            <div class="accordion">
+                <!-- General Questions -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>What is Readable Spokable PDF?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Readable Spokable PDF is a browser-based tool that converts technical PDF documents into natural, spoken-friendly content optimized for text-to-speech (TTS) systems. It uses AI to transform code blocks, tables, mathematical notation, and other technical elements into descriptive, easy-to-listen-to text.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Do I need to install anything?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>No installation required! This is a pure web application that runs entirely in your browser. Just open the website and start using it. You will need a Google AI Studio API key, which you can get for free.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>What types of PDFs are supported?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>The application works with PDFs that contain selectable text. This includes most digitally-created PDFs like technical documentation, research papers, textbooks, and reports. Scanned PDFs (images of text) are not supported as they require OCR, which is not included in this tool.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API & Setup Questions -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>How do I get a Google AI Studio API key?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <ol>
+                                <li>Visit <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" class="link-external">Google AI Studio</a></li>
+                                <li>Sign in with your Google account</li>
+                                <li>Click "Get API Key" or "Create API Key"</li>
+                                <li>Copy the generated key (starts with "AIza")</li>
+                                <li>Paste it in the Settings page of this application</li>
+                            </ol>
+                            <p>The free tier includes 15 requests per minute and 1,500 requests per day, which is suitable for most use cases.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Is my API key secure?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Yes! Your API key is stored only in your browser's LocalStorage and is never transmitted to any server except Google's Gemini API endpoints (when making transformation requests). The application runs entirely in your browser, so your API key never leaves your device otherwise.</p>
+                            <p>You can clear your API key at any time using the "Clear API Keys" button in Settings, or use the "Erase All Data" option to remove everything.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Does this cost money to use?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>The application itself is free and open source. However, using the Google Gemini API may incur costs depending on your usage:</p>
+                            <ul>
+                                <li><strong>Free Tier:</strong> 15 requests/minute, 1,500 requests/day (suitable for occasional use)</li>
+                                <li><strong>Paid Tier:</strong> Higher limits with pay-per-use pricing</li>
+                            </ul>
+                            <p>See <a href="https://ai.google.dev/pricing" target="_blank" rel="noopener" class="link-external">Google AI Pricing</a> for current rates.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy & Data Questions -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Where is my data stored?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>All your data is stored locally in your browser:</p>
+                            <ul>
+                                <li><strong>Settings & API keys:</strong> LocalStorage</li>
+                                <li><strong>PDF files, batches, logs:</strong> IndexedDB</li>
+                            </ul>
+                            <p>Nothing is stored on external servers. Your data stays on your device unless you explicitly export it.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>What data is sent to Google?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Only the text content from your PDF and images (if multimodal processing is enabled) are sent to Google's Gemini API for transformation. This is necessary for the AI to convert technical content to natural speech.</p>
+                            <p>Your API key is included in request headers but is managed by Google's secure infrastructure. The application does not send data to any other third parties.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Can I use this offline?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>The application can be loaded offline after the first visit (with appropriate caching), but you need an internet connection to make API calls to Google Gemini for the actual transformation. PDF extraction and generation can work offline, but the AI transformation requires internet access.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Processing Questions -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>How long does processing take?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Processing time depends on several factors:</p>
+                            <ul>
+                                <li><strong>Document size:</strong> Larger documents take longer</li>
+                                <li><strong>Batch size:</strong> Smaller batches mean more API calls</li>
+                                <li><strong>API rate limits:</strong> Free tier has limits that slow processing</li>
+                                <li><strong>Network speed:</strong> Affects API call latency</li>
+                            </ul>
+                            <p>Typical processing: ~5-10 seconds per batch. A 100-page document might take 5-15 minutes depending on settings.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>What is Turbo Mode?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Turbo Mode enables parallel processing of multiple batches simultaneously, which can significantly speed up transformation. However, it increases the risk of hitting API rate limits. It's recommended only for users with paid API accounts or when processing small documents.</p>
+                            <p>You can configure the number of parallel batches in Settings (default: 3).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Why did processing fail?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Common reasons for processing failure:</p>
+                            <ul>
+                                <li><strong>Invalid API key:</strong> Check Settings and test your key</li>
+                                <li><strong>Rate limits (429 errors):</strong> Increase Retry Delay, decrease Parallel Chunks, or add a backup API key</li>
+                                <li><strong>Model not available:</strong> Try a different model or check Diagnostics for available models</li>
+                                <li><strong>Network issues:</strong> Check your internet connection</li>
+                                <li><strong>API timeout:</strong> Increase the timeout in Settings</li>
+                            </ul>
+                            <p>Use the Diagnostics page to export logs for troubleshooting.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Can I pause and resume processing?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Yes! Click the Pause button during processing to temporarily halt operations. Click Resume to continue from where you left off. The application tracks your progress and will resume processing the same batches.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Output Questions -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>What output formats are supported?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Currently supported outputs:</p>
+                            <ul>
+                                <li><strong>PDF:</strong> Main output format with custom formatting</li>
+                                <li><strong>Text:</strong> Plain text file with transformed content</li>
+                                <li><strong>Audio Preview:</strong> In-browser TTS preview (limited to first 500 characters)</li>
+                            </ul>
+                            <p>Future versions may include EPUB and Markdown export options.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Can I customize the PDF output?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Yes! In Settings, you can configure:</p>
+                            <ul>
+                                <li>Font family and size</li>
+                                <li>Line height and spacing</li>
+                                <li>Page size (Letter, A4, Legal)</li>
+                                <li>Margins</li>
+                                <li>Whether to include page numbers</li>
+                                <li>Whether to generate a table of contents</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customization Questions -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Can I customize the transformation prompts?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Absolutely! The Settings page allows you to edit all transformation prompts:</p>
+                            <ul>
+                                <li>System prompt (overall AI behavior)</li>
+                                <li>Text transformation prompt</li>
+                                <li>Table conversion prompt</li>
+                                <li>Code description prompt</li>
+                                <li>Mathematical notation prompt</li>
+                                <li>Figure/image description prompt</li>
+                            </ul>
+                            <p>You can also save and load custom prompt templates for different document types.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>What AI models are available?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>As of late 2025, the application supports:</p>
+                            <ul>
+                                <li>gemini-3-pro-preview (newest, Nov 18, 2025)</li>
+                                <li>gemini-2.5-pro</li>
+                                <li>gemini-2.5-flash</li>
+                                <li>gemini-2.5-flash-lite</li>
+                                <li>gemini-2.0-flash</li>
+                            </ul>
+                            <p>The application automatically fetches available models from Google and lets you configure the priority order. If one model fails, it automatically tries the next one.</p>
+                            <p>Visit the Diagnostics page to see all currently available models in real-time.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Troubleshooting Questions -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>I'm getting rate limit errors (429). What should I do?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Rate limit errors occur when you make too many requests too quickly. Try these solutions:</p>
+                            <ol>
+                                <li><strong>Increase Retry Delay:</strong> In Settings, increase the delay between retries (e.g., 3000-5000ms)</li>
+                                <li><strong>Disable Turbo Mode:</strong> Turn off parallel processing</li>
+                                <li><strong>Increase Rate Limit Delay:</strong> Add more delay between requests (e.g., 2000ms)</li>
+                                <li><strong>Add Backup API Key:</strong> Use a second API key for automatic failover</li>
+                                <li><strong>Upgrade API Plan:</strong> Consider upgrading to a paid tier for higher limits</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>The transformation quality isn't good. How can I improve it?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Try these approaches:</p>
+                            <ul>
+                                <li><strong>Edit Prompts:</strong> Customize the transformation prompts in Settings to better suit your document type</li>
+                                <li><strong>Adjust Temperature:</strong> Lower temperature (0.5-0.7) for more focused output, higher (1.2-1.5) for more creative</li>
+                                <li><strong>Try Different Models:</strong> Some models are better at certain tasks. Try gemini-3-pro-preview for complex documents</li>
+                                <li><strong>Reduce Batch Size:</strong> Smaller batches give the AI more context per chunk</li>
+                                <li><strong>Increase Overlap:</strong> More overlap between batches improves continuity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Can I cancel processing midway?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Yes! Click the Cancel button during processing. You can also download partial results if some batches have already been processed successfully.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Questions -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>How does image processing work?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>When "Include Images" is enabled in Settings, the application:</p>
+                            <ol>
+                                <li>Extracts images from the PDF</li>
+                                <li>Converts them to base64 format</li>
+                                <li>Sends them to Gemini's multimodal endpoints along with nearby text</li>
+                                <li>Receives detailed descriptions of the figures</li>
+                                <li>Includes those descriptions in the output PDF</li>
+                            </ol>
+                            <p>Note: If the selected model doesn't support images, the app automatically falls back to text-only processing.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>What is token estimation?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Tokens are the basic units that AI models use to process text. The application uses a rough estimate of ~4 characters per token to split your document into appropriately-sized batches.</p>
+                            <p>You can adjust the Batch Size in Settings. The default is 10,000 tokens (roughly 40,000 characters or about 7,000 words).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>How do I export diagnostic information?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Visit the Diagnostics page and click "Export Diagnostic Bundle". This creates a ZIP file containing:</p>
+                            <ul>
+                                <li>Application logs</li>
+                                <li>Session information</li>
+                                <li>Settings (with API keys redacted)</li>
+                                <li>System information</li>
+                            </ul>
+                            <p>This bundle is useful for troubleshooting or when requesting support.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Questions -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Can I process multiple PDFs at once?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>Currently, the application processes one PDF at a time. However, you can queue multiple processing jobs by opening multiple browser tabs. Each tab maintains its own state independently.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Is there a file size limit?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>There's no hard file size limit in the application, but practical limits include:</p>
+                            <ul>
+                                <li><strong>Browser memory:</strong> Very large PDFs (>100MB) may cause performance issues</li>
+                                <li><strong>API limits:</strong> Larger documents require more API calls and may take longer</li>
+                                <li><strong>IndexedDB quota:</strong> Browser storage is typically limited to a few hundred MB</li>
+                            </ul>
+                            <p>For best results, documents under 50MB are recommended.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>How can I contribute or report bugs?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p>We welcome contributions! You can:</p>
+                            <ul>
+                                <li><strong>Report bugs:</strong> Open an issue on <a href="https://github.com" target="_blank" rel="noopener" class="link-external">GitHub</a></li>
+                                <li><strong>Request features:</strong> Submit feature requests via GitHub issues</li>
+                                <li><strong>Contribute code:</strong> Fork the repository and submit pull requests</li>
+                                <li><strong>Improve docs:</strong> Help us make the documentation better</li>
+                            </ul>
+                            <p>When reporting bugs, please export a diagnostic bundle from the Diagnostics page to help us investigate.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Still have questions? -->
+            <section class="card mt-xl">
+                <div class="card-body" style="text-align: center;">
+                    <h3>Still Have Questions?</h3>
+                    <p>If you couldn't find the answer you're looking for, you can:</p>
+                    <div class="action-buttons">
+                        <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-primary">
+                            Ask on GitHub
+                        </a>
+                        <a href="diagnostics.html" class="btn btn-secondary">
+                            View Diagnostics
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Readable Spokable PDF</h4>
+                    <p>Transform technical documents into natural speech</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" class="link-external">Get API Key</a></li>
+                        <li><a href="https://ai.google.dev/pricing" target="_blank" rel="noopener" class="link-external">Pricing Info</a></li>
+                        <li><a href="https://github.com" target="_blank" rel="noopener" class="link-external">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Readable Spokable PDF. MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Page Script -->
+    <script type="module">
+        import { getThemeManager } from '../js/settings-manager.js';
+
+        const theme = getThemeManager();
+        theme.init();
+
+        // Accordion functionality
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const wasActive = item.classList.contains('active');
+
+                // Close all items
+                document.querySelectorAll('.accordion-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+
+                // Open clicked item if it wasn't active
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Theme toggle
+        document.querySelector('.theme-toggle').addEventListener('click', () => {
+            theme.toggle();
+            const icon = document.querySelector('.theme-icon');
+            icon.textContent = theme.isDark() ? '☀️' : '🌙';
+        });
+
+        // Mobile nav
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
